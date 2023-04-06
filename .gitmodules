@@ -1,0 +1,9 @@
+[submodule "qr_code_server/nju_qr_py"]
+	path = qr_code_server/nju_qr_py
+	url = https://github.com/SuperKenVery/nju_qr_py.git
+[submodule "qr_code_server/nju-login"]
+	path = qr_code_server/nju_login
+	url = https://github.com/SuperKenVery/nju-login.git
+[submodule "qr_code_server/static/qrcodejs"]
+	path = qr_code_server/static/qrcodejs
+	url = https://github.com/davidshimjs/qrcodejs.git
