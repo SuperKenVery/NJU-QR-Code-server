@@ -1,0 +1,6 @@
+[submodule "nju-qr-py"]
+	path = nju-qr-py
+	url = https://github.com/SuperKenVery/nju-qr-py.git
+[submodule "nju-login"]
+	path = nju-login
+	url = https://github.com/SuperKenVery/nju-login.git
