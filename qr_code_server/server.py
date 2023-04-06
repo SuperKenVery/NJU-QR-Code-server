@@ -2,6 +2,7 @@ from flask import Flask,send_from_directory,redirect
 from . import configuration
 from .nju_qr_py import njuQrCode
 from .nju_login import nju_login
+import os
 
 app = Flask("NJU QR server")
 castgc=None
@@ -32,6 +33,7 @@ def index():
 
 @app.route(configuration.path+'/<path:path>')
 def static_files(path):
-    return send_from_directory('static', path)
+    current_file_path=os.path.dirname(__file__)
+    return send_from_directory(os.path.join(current_file_path,'static'), path)
 
 
