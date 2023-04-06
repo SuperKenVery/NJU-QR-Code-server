@@ -1,0 +1,5 @@
+ddddocr
+requests
+flask
+pycryptodome
+lxml
