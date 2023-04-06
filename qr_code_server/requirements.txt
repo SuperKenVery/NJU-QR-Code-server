@@ -1,6 +1,6 @@
 ddddocr
 requests
 flask
-pycryptodome
+pycryptodomex
 lxml
 gunicorn

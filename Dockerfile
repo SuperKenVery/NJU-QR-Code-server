@@ -15,7 +15,7 @@ RUN . "${HOME}/conda/etc/profile.d/conda.sh" && \
     conda install python=3.10 && \
     conda activate && \
     pip config set global.index-url https://mirror.nju.edu.cn/pypi/web/simple && \
-    pip install ddddocr requests flask pycryptodome lxml gunicorn
+    pip install ddddocr requests flask pycryptodomex lxml gunicorn
 
 COPY . .
 

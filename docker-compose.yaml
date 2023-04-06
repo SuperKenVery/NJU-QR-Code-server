@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  qr_code_server:
+    build: .
+    restart: always
+    ports:
+      - 8340:8000
