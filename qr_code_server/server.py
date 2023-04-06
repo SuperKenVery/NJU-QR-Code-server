@@ -29,7 +29,7 @@ def qr():
 
 @app.route(configuration.path)
 def index():
-    return redirect(configuration.path+'/index.html')
+    return redirect('.'+configuration.path+'/index.html')
 
 @app.route(configuration.path+'/<path:path>')
 def static_files(path):
