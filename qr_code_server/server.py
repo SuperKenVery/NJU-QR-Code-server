@@ -34,3 +34,6 @@ def index():
 def static_files(path):
     return send_from_directory('static', path)
 
+def create_app():
+    return app
+
