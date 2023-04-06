@@ -5,4 +5,4 @@ services:
     build: .
     restart: always
     ports:
-      - 8340:8000
+      - 8340:80
