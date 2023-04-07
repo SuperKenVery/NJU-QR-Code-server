@@ -22,7 +22,12 @@ def qr():
         castgc=nju_login.login(configuration.username, configuration.password).cookies['CASTGC']
 
     app.logger.info("Getting qr content...")
-    qr_content=njuQrCode.getQrContent(castgc)
+    try:
+        qr_content=njuQrCode.getQrContent(castgc)
+    except KeyError:
+        castgc=nju_login.login(configuration.username, configuration.password).cookies['CASTGC']
+        return qr()
+
 
     app.logger.info("Done getting qr content.")
     return qr_content
