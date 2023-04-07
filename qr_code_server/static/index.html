@@ -9,22 +9,23 @@
     <script src="qrcodejs/qrcode.min.js" type="text/javascript"></script>
     <script>
         let qr_pos=document.getElementById("qrcode")
-        function update() {
-            let request = new XMLHttpRequest()
-            request.open("GET", "./qr", true)
-            request.onreadystatechange = function () {
-                if (request.readyState == 4) {
-                    if (request.status == 200) {
-                        let a = Math.min(window.screen.width, window.screen.height) * 0.95
+        let a = Math.min(window.screen.width, window.screen.height) * 0.95
                         let qrcode = new QRCode(qr_pos,
                             {
-                                text: request.responseText,
+                                text: "",
                                 width: a,
                                 height: a,
                                 colorDark: "#7c267d",
                                 colorLight: "#ffffff",
                                 correctLevel: QRCode.CorrectLevel.H
                             })
+        function update() {
+            let request = new XMLHttpRequest()
+            request.open("GET", "./qr", true)
+            request.onreadystatechange = function () {
+                if (request.readyState == 4) {
+                    if (request.status == 200) {
+                        qrcode.makeCode(request.responseText)
                     }
                     else {
                         alert("请求失败")
@@ -34,7 +35,8 @@
             request.send()
         }
 
-        setInterval(update,5000)
+        setInterval(update,10000)
+        update()
 
 
     </script>
