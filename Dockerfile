@@ -20,6 +20,7 @@ COPY . .
 
 RUN . "${HOME}/conda/etc/profile.d/conda.sh" && \
     . "${HOME}/conda/etc/profile.d/mamba.sh" && \
+    conda activate && \
     pip install -r qr_code_server/requirements.txt
 
 
