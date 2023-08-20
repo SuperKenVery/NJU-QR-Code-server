@@ -18,7 +18,9 @@ RUN . "${HOME}/conda/etc/profile.d/conda.sh" && \
 
 COPY . .
 
-RUN pip install -r qr_code_server/requirements.txt
+RUN . "${HOME}/conda/etc/profile.d/conda.sh" && \
+    . "${HOME}/conda/etc/profile.d/mamba.sh" && \
+    pip install -r qr_code_server/requirements.txt
 
 
 
