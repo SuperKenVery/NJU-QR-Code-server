@@ -14,9 +14,12 @@ RUN . "${HOME}/conda/etc/profile.d/conda.sh" && \
     . "${HOME}/conda/etc/profile.d/mamba.sh" && \
     conda install python=3.10 && \
     conda activate && \
-    pip config set global.index-url https://mirror.nju.edu.cn/pypi/web/simple && \
-    pip install ddddocr requests flask pycryptodomex lxml gunicorn
+    pip config set global.index-url https://mirror.nju.edu.cn/pypi/web/simple
 
 COPY . .
+
+RUN pip install -r qr_code_server/requirements.txt
+
+
 
 CMD [ "bash","/code/start.sh" ]
