@@ -2,7 +2,7 @@
 authors = ["ken <1610057945@qq.com>"]
 channels = ["conda-forge"]
 name = "NJU-QR-Code-server"
-platforms = ["osx-arm64"]
+platforms = ["osx-arm64", "linux-aarch64", "linux-64"]
 version = "0.1.0"
 
 [tasks]
@@ -10,6 +10,7 @@ version = "0.1.0"
 [dependencies]
 python = ">=3.13.5,<3.14"
 flask = ">=3.1.1,<4"
+gunicorn = ">=23.0.0,<24"
 
 [pypi-dependencies]
 nju-login-simple = ">=1.1.1, <2"
