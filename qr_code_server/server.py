@@ -1,8 +1,8 @@
 from flask import Flask,send_from_directory,redirect
 from . import configuration
 from .nju_qr_py import njuQrCode
-from .nju_login import nju_login
 import os
+import nju_login
 
 app = Flask("NJU QR server")
 castgc=None
@@ -18,8 +18,7 @@ def qr():
     if not castgc:
         app.logger.info("Loggin in...")
         login_response=nju_login.login(configuration.username, configuration.password)
-        app.logger.info(f"Login cookie: {login_response.cookies}")
-        castgc=nju_login.login(configuration.username, configuration.password).cookies['CASTGC']
+        castgc=login_response.cookies['CASTGC']
 
     app.logger.info("Getting qr content...")
     try:
@@ -27,7 +26,6 @@ def qr():
     except KeyError:
         castgc=nju_login.login(configuration.username, configuration.password).cookies['CASTGC']
         return qr()
-
 
     app.logger.info("Done getting qr content.")
     return qr_content
@@ -40,5 +38,3 @@ def index():
 def static_files(path):
     current_file_path=os.path.dirname(__file__)
     return send_from_directory(os.path.join(current_file_path,'static'), path)
-
-

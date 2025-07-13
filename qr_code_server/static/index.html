@@ -1,43 +1,52 @@
-<!DOCTYPE html>
-
-<head>
-    <title>南京大学校园码</title>
-</head>
-
-<body>
-    <div id="qrcode"></div>
-    <script src="qrcodejs/qrcode.min.js" type="text/javascript"></script>
-    <script>
-        let qr_pos=document.getElementById("qrcode")
-        let a = Math.min(window.screen.width, window.screen.height) * 0.95
-                        let qrcode = new QRCode(qr_pos,
-                            {
-                                text: "",
-                                width: a,
-                                height: a,
-                                colorDark: "#7c267d",
-                                colorLight: "#ffffff",
-                                correctLevel: QRCode.CorrectLevel.H
-                            })
-        function update() {
-            let request = new XMLHttpRequest()
-            request.open("GET", "./qr", true)
-            request.onreadystatechange = function () {
-                if (request.readyState == 4) {
-                    if (request.status == 200) {
-                        qrcode.makeCode(request.responseText)
-                    }
-                    else {
-                        alert("请求失败")
-                    }
-                }
+<!doctype html>
+<html>
+    <head>
+        <title>南京大学校园码</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #ffffff;
             }
-            request.send()
-        }
 
-        setInterval(update,10000)
-        update()
+            #qrcode {
+                width: min(90vh, 90vw);
+                height: min(90vh, 90vw);
+                max-width: 90%;
+                max-height: 90%;
+                object-fit: contain;
+            }
+        </style>
+    </head>
 
+    <body>
+        <img id="qrcode" />
 
-    </script>
-</body>
+        <script>
+            let qr_img = document.getElementById("qrcode");
+            function update() {
+                let request = new XMLHttpRequest();
+                request.open("GET", "./qr", true);
+                request.onreadystatechange = function () {
+                    if (request.readyState == 4) {
+                        if (request.status == 200) {
+                            qr_img.src =
+                                "data:image/png;base64, " +
+                                request.responseText;
+                        } else {
+                            alert("请求失败");
+                        }
+                    }
+                };
+                request.send();
+            }
+
+            setInterval(update, 10000);
+            update();
+        </script>
+    </body>
+</html>
